@@ -1,0 +1,16 @@
+import { HydratedDocument } from "mongoose";
+import { IUser } from "../../common/interfaces/user.interface.js";
+import z from "zod";
+import { logoutSchema, shareProfileSchema } from "./user.validation.js";
+import { JwtPayload } from "jsonwebtoken";
+
+//user dto
+export interface IAuthDto {
+  user: HydratedDocument<IUser>;
+  decode?: JwtPayload;
+}
+
+//logout dto
+export type LogoutDto = z.infer<typeof logoutSchema.body>;
+//share profile dto
+export type ShareProfileDto = z.infer<typeof shareProfileSchema.params>;
